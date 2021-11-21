@@ -19,6 +19,7 @@ dan_id=int(os.environ.get('dan_id', None))
 doctors_id=int(os.environ.get('doctors', None))
 dimas_id=int(os.environ.get('dimas', None))
 
+
 electronic_s_key="Электронные сигареты"
 giga_key="Жижа"
 ispar_key="Испарители"
@@ -86,7 +87,7 @@ def command_worker(message,chat_id):
         bot.send_message(chat_id, "Выбери производителя👇", reply_markup=Keyboard_Generator(mass))
 
 
-    if message=="/Испаритель":
+    if message=="/Испарители":
         mass=[]
         for i in get_dir(ispar):
             mass.append("/"+f"{ispar_key} "+str(i))
@@ -125,7 +126,7 @@ def command_worker(message,chat_id):
 
 
     if str(message).replace("/", '').replace(f"{ispar_key} ", "") in get_dir(ispar) and ispar_key in str(message):
-        print(2)
+        print(3)
         bot.send_message(chat_id, "Выбери товар",
                          reply_markup=Keyboard_Generator(["Назад к производителям Испарителей"]))
         manufacturer = str(message).replace('/', '').replace(f"{ispar_key} ", "")
@@ -255,7 +256,7 @@ def Callback_inline(call):
                     bot.send_message(dimas_id,f"Новый заказ:\n{item}\n{manufacturer}\n{name}\n{taste}\n{place}\n{first_name}\n{url}")
             except:
                 bot.send_message(dan_id,f"WRITE ERRR\nНовый заказ:\n{item}\n{manufacturer}\n{name}\n{taste}\n{place}\n{username}\n{first_name}\n{chat_id}\n{url}")
-
+            print(f"Новый заказ:\n{item}\n{manufacturer}\n{name}\n{taste}\n{place}\n{first_name}\n{url}")
 
 
 bot.polling(none_stop=True)
